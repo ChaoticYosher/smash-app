@@ -1,0 +1,67 @@
+// generate a match between n players updating data structures as necessary
+function genMatches( n, numRounds ){
+	var valid = false
+	var playerQ = [[]]
+	var count = 0, loopCount;
+	var max = triangle( players.length - 1 ) / 8
+	var k = 0;
+	// populate the queue
+	fillWithBys()
+	// create numRounds passes through the players array
+	while( k < numRounds ){
+		tempArray = []
+		loopCount = 0
+		do{
+			if( loopCount > 100 ){
+				resetSelected()
+			}
+			// take 4 players off the queue
+			for( var i = 0 ; i < n ; i++ ){
+				tempArray[i] = playerQ[k][i]
+			}
+			// make sure they haven't played each other
+			valid = checkPairs( tempArray )
+			// cycle the queue if there is a conflict
+			if( !valid ){
+				playerQ[k].push( playerQ[k].pop() )
+			}
+		} while ( !valid && playerQ[k].length > 2 * n);
+		// move everyone who was selected up to the next queue
+		playerQ[k].splice(0,n)						// removes 1 element starting at index 0, and inserts nothing
+		addMatch( tempArray )
+		match++
+		count++
+		// reset the table that keeps track of whose played who once we've ran out of options ...
+		if( count >= max ){
+			resetSelected()
+			count = 0
+		}
+		// move up to the next queue once there are too few people
+		if( playerQ[k].length < 2 * n ){
+			if( k+1 < numRounds ){
+				playerQ[k+1] = []
+				while( playerQ[k].length > 0 ){
+					playerQ[k+1].push( playerQ[k].pop() )
+				}
+				k++
+				for( var j = 0 ; j < players.length ; j++ ){
+					playerQ[k].push(j)
+				}
+				// scramble the queue to attempt fairness
+				for( var j = 0 ; j < 100 ; j++ ){
+					var a = rand(playerQ[k])
+					var b = rand(playerQ[k])
+					var c = playerQ[k][a]
+					playerQ[k][a] = playerQ[k][b]
+					playerQ[k][b] = c
+				}
+			} else {
+				while( playerQ[k].length > 0 ){
+					addMatch( playerQ[k].splice(0,n) )
+				}
+				k++;
+			}
+		}
+	}
+	displayMatches()
+}

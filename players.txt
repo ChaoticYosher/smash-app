@@ -1,0 +1,49 @@
+Mario
+Luigi
+Peach
+Bowser
+Yoshi
+Rosalina
+Bowser Jr
+Wario
+Game and Watch
+DK
+Diddy Kong
+Link
+Zelda
+Sheik
+Ganondorf
+Toon Link
+Samus
+Zero Suit Samus
+Pit
+Palutena
+Marth
+Ike
+Robin
+Kirby
+King Dedede
+Meta Knight
+Little Mac
+Fox
+Falco
+Pikachu
+Charizard
+Lucario
+Jigglypuff
+Greninja
+Duck Hunt
+ROB
+Ness
+Captain Falcon
+Villager
+Olimar
+Wii Fit Trainer
+Dr Mario
+Dark Pit
+Lucina
+Shulk
+Pacman
+Megaman
+Sonic
+Random]
