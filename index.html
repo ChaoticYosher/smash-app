@@ -1,49 +1,89 @@
-<!DOCTYPE html>
 <html>
-
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Smash App : ">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Smash App</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/epicYoshi64/smash-app">View on GitHub</a>
-
-          <h1 id="project_title">Smash App</h1>
-          <h2 id="project_tagline"></h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/epicYoshi64/smash-app/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/epicYoshi64/smash-app/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <p>Smash Salt</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Smash App maintained by <a href="https://github.com/epicYoshi64">epicYoshi64</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+	<head>
+		<title>	Super Smash Bros for Wii U </title>
+		<script src="Smash.js" ></script>
+		<link rel="stylesheet" type="css" href="Smash.css">
+	</head>
+	<body onload="init()">
+		<article id = "main">
+			<section class = "addPlayer">
+				<div class="char-select">
+					<img name="SelectedChar" class="select-pic" src="Fighters\\Mario.png"/>
+					<form name="add">
+						<input type="text" name="fighter" id="character" class="readonly" readonly>
+						<input type="text" id="PlayerName" name="playName" value="Alex" class="playerForm" onfocus="this.select()">
+						<input type="button" id="AddPlayer" name="Add" value="Add" class="playerForm" onclick="addPlayer(playName.value,fighter.value)">
+					</form>
+				</div>
+				<div id = "chars"> </div>
+				<div id="players" class='players'><p>Players:<p>
+					<form id="participant-post">
+					</form>
+				</div>
+			</section>
+			<section name="matchEdit" class="matchEdit">
+				<form name="SetMatch">
+					<div id="options">
+						<input type="radio" class="tournOption" id="robin" name="matchType" value="robin" checked>Round Robin
+						<input type="checkbox" class="tournOption" id="two-tree" name="matchType" value="two-tree">A Side : B Side
+						<input type="radio" class="tournOption" id="single-elim" name="matchType" value="single-elim">Single Elimination
+						<input type="radio" class="tournOption" id="double-elim" name="matchType" value="double-elim">Double Elimination
+					</div>
+					<div id="rr-opt">
+						<label for="numRounds" id="round-q">How many rounds? </label>
+						<input type="number" id="numRounds" name="numRounds" value="2" min="1" max="6">
+						<label for="numParts" id="round-p">How many players each match? </label>
+						<input type="number" id="numPlayer" name="numPlayer" value="4" min="2" max="8">
+						<input type="button" id="genRR" name="genMatch" value="Generate" onclick="genMatches(numPlayer.value,numRounds.value)">
+					</div>
+					<div id="se-opt">
+<!--						<label for="numRounds" id="sep-q"> How many players? </label>
+						<input type="text" id="numSE" name="numSE" value="32">
+						<input type="button" id="genSE" name="genSE" value="Generate" onclick="">
+-->					</div>
+					<div id="de-opt">
+<!--					<label for="numRounds" id="dep-q">How many players? </label>
+						<input type="text" id="numDE" name="numDE" value="32">
+						<input type="button" id="genDE" name="genDE" value="Generate" onclick="">
+-->					</div>
+					<input type="button" id="clearMatch" value="Clear" onclick="clearMatches()">					
+					<div id="matchErr"></div>
+				</form>
+			</section>
+			<section id="matches">
+			</section>
+			<section>
+				<form id="calculate" name="calculate">
+					<div class="ptin">
+						<label for="firstPts"> 1st:
+						<input type="number" name="firstPts" value="6" min="-10" max="20">
+						<label for="firstPts"> Points
+					</div>
+					<div class="ptin">
+						<label for="secondPts"> 2nd:
+						<input type="number" name="secondPts" value="4" min="-10" max="20">
+						<label for="secondPts"> Points
+					</div>
+					<div class="ptin">
+						<label for="thirdPts"> 3rd:
+						<input type="number" name="thirdPts" value="2" min="-10" max="20">
+						<label for="thirdPts"> Points
+					</div>
+					<div class="ptin">
+						<label for="fourthPts"> 4th:
+						<input type="number" name="fourthPts" value="1" min="-10" max="20">
+						<label for="fourthPts"> Points
+					</div>
+					<div class="ptin">
+						<label for="pointFunction">Evaluation:
+						<input type="text" name="pointFunction" value="3*rank+2*kos-falls">
+					</div>
+					<div class="ptin">
+						<input type="button" value="Recalculate" onclick="calcStandings()">
+					</div>
+				</form>
+				<div id="standings"> </div>
+			</section>
+		</article>
+	</body>
 </html>
