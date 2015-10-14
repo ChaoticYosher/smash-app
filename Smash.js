@@ -2,6 +2,7 @@ var players;		// the list of people playing in the tournament
 var fighters;		// the list of playable fighters
 var matches;		// keep track of all matches
 var selectedPlayer;	// to allow swapping of characters
+var linux;
 
 // Helper Methods		//////////////////////////
 
@@ -76,7 +77,30 @@ function openFile(event) {
 
 // Dynamic Web Page Building
 function rootImageDir(){
-	return "_images\\"
+	return "_images"
+}
+
+function buildPath( dest ){
+	var path = rootImageDir()
+	for( var i = 0 ; i < dest.length ; i++ ){
+		path += dest[i]
+		if( i < dest.length - 1 ){
+			path += (linux) ? "/" : "\\"
+		}
+	}
+	return path
+}
+
+function avatarPath( name ){
+	return buildPath(["Avatars",name+".png"])
+}
+
+function portraitPath( name ){
+	return buildPath(["Fighters",name+".png"])
+}
+
+function imagePath( name ){
+	return buildPath([name+".png"])
 }
 
 function applyAttribute( element, attribute, value ){
@@ -114,7 +138,7 @@ function fighterDiv( name, fighter ){
 	innerDiv.appendChild( text )
 	var img = document.createElement( "img" )
 	applyAttribute( img, "class", "playerPic" )
-	applyAttribute( img, "src", rootImageDir() + "Fighters\\" + fighter + ".png" )
+	applyAttribute( img, "src", portraitPath( fighter ) )
 	div.appendChild( img )
 	div.appendChild( innerDiv )
 	return div
@@ -137,7 +161,7 @@ function playerStandDiv( board, player, type ){
 	fighter = document.createElement( "div" )
 	applyAttribute( fighter, "class", "standingItem" )
 	img = document.createElement( "img" )
-	applyAttribute( img, "src", rootImageDir() + "Avatars\\" + player.fighter + ".png" )
+	applyAttribute( img, "src", avatarPath( player.fighter ) )
 	fighter.appendChild( img )
 	main.appendChild( fighter )
 	addTextNode( main, "Score: " + player.score )
@@ -157,12 +181,13 @@ function rankNode( i ){
 	var node = document.createElement( "div" )
 	applyAttribute( node, "class", "standingItem" )
 	var img = document.createElement( "img" )
-	applyAttribute( img, "src", rootImageDir() + "Images\\" + i + ".png" )
+	applyAttribute( img, "src", imagePath( i ) )
 	node.appendChild( img )
 	return node
 }
 
 function init(){
+	linux = true
 	matches = []
 	players = []
 	loadFighters()
@@ -191,7 +216,7 @@ function loadFighters(){
 		imgSrc = document.createAttribute("src")
 		clickEvent = document.createAttribute("onclick")
 		divClass.value = "charPortrait"
-		imgSrc.value = rootImageDir() + "Avatars\\" + fighters[i] + ".png"
+		imgSrc.value = avatarPath( fighters[i] )
 		portraitDiv.setAttributeNode( divClass )
 		img.setAttributeNode( imgSrc )
 		clickEvent = document.createAttribute("onclick")
@@ -221,7 +246,7 @@ function randomFighter(){
 }
 
 function selectFighter(name){
-	document.SelectedChar.src = rootImageDir() + "Fighters\\" + name + ".png"
+	document.SelectedChar.src = portraitPath( name )
 	document.getElementById("character").value = name
 }
 
@@ -280,6 +305,7 @@ function addMatch(array){
 
 function displayMatch( main, matches, i ){
 	var matchForm, playerSet, playerNode, fighterNode, rankLabel, matchRank, KOLabel, matchKO, fallLabel, matchFall, matchSubmit, tempText
+	// the colors red, blue, yellow, green, orange, light blue, purple, and black that are used as the background color of each player in a match
 	var backColors = ['#dd3223','#2332dd','#dddd23','#32dd23','#ff5e00','#40d5cc','#8f2b91','#333333']
 	var borderColors = ['#963223','#233296','#969623','#329623','#dd3223','#2332dd','#2e0e2e','#000000']
 	matchForm = document.createElement("form")
