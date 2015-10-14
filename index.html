@@ -3,12 +3,13 @@
 		<title>	Super Smash Bros for Wii U </title>
 		<script src="Smash.js" ></script>
 		<link rel="stylesheet" type="css" href="Smash.css">
+		<meta charset="utf-8"/>
 	</head>
 	<body onload="init()">
 		<article id = "main">
 			<section class = "addPlayer">
 				<div class="char-select">
-					<img name="SelectedChar" class="select-pic" src="Fighters\\Mario.png"/>
+					<img name="SelectedChar" class="select-pic" src="fighterPath('Mario')"/>
 					<form name="add">
 						<input type="text" name="fighter" id="character" class="readonly" readonly>
 						<input type="text" id="PlayerName" name="playName" value="Alex" class="playerForm" onfocus="this.select()">

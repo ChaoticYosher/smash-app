@@ -77,11 +77,12 @@ function openFile(event) {
 
 // Dynamic Web Page Building
 function rootImageDir(){
-	return "_images"
+	return "Images"
 }
 
 function buildPath( dest ){
-	var path = rootImageDir()
+	var path = ""
+	dest.unshift( rootImageDir() )
 	for( var i = 0 ; i < dest.length ; i++ ){
 		path += dest[i]
 		if( i < dest.length - 1 ){
@@ -104,9 +105,7 @@ function imagePath( name ){
 }
 
 function applyAttribute( element, attribute, value ){
-	var attr = document.createAttribute(attribute)
-	attr.value = value
-	element.setAttributeNode( attr )
+	element.setAttribute( attribute, value )
 }
 
 function removeChildren( node ){
@@ -208,20 +207,13 @@ function loadFighters(){
 				'Ness','Captain Falcon','Villager','Olimar',
 				'Wii Fit Trainer','Dr Mario','Dark Pit','Lucina',
 				'Shulk','Pacman','Megaman','Sonic','Random']
-	var portraitDiv, divClass, img, imgSrc, clickEvent
+	var portraitDiv, img
 	for( var i = 0 ; i < fighters.length ; i++ ){
 		portraitDiv = document.createElement("div")
+		applyAttribute( portraitDiv, "class", "charPortrait" )
 		img = document.createElement("img")
-		divClass = document.createAttribute("class")
-		imgSrc = document.createAttribute("src")
-		clickEvent = document.createAttribute("onclick")
-		divClass.value = "charPortrait"
-		imgSrc.value = avatarPath( fighters[i] )
-		portraitDiv.setAttributeNode( divClass )
-		img.setAttributeNode( imgSrc )
-		clickEvent = document.createAttribute("onclick")
-		clickEvent.value = "fighterClicked('" + fighters[i] + "')"
-		img.setAttributeNode( clickEvent )
+		applyAttribute( img, "src", avatarPath( fighters[i] ) )
+		applyAttribute( img, "onclick", "fighterClicked('" + fighters[i] + "')" )
 		portraitDiv.appendChild( img )
 		document.getElementById("chars").appendChild( portraitDiv )
 	}
@@ -571,4 +563,39 @@ function UpdateTournParticipants(){
 
 	xmlhttp.open("POST", url, true);
 	xmlhttp.send(players);
+}
+
+function buildResults(xmlname) {
+	linux = true
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			generatePage(xhttp);
+		}
+	}
+	xhttp.open("GET", xmlname, true);
+	xhttp.send();
+}
+
+function generatePage(xml) {
+    var xmlDoc = xml.responseXML;
+    var playerList = document.getElementById("players");
+    var player = xmlDoc.getElementsByTagName("player");
+    var children, name, fighter;
+    for( var i = 0 ; i < player.length ; i++ ){
+		children = player[i].childNodes;
+		name = "?";
+		fighter = "Random";
+		for( var j = 0 ; j < children.length ; j++ ){
+			if( children[j].nodeType == 1 ){
+				if( children[j].nodeName == "name" ){
+					name = children[j].innerHTML;
+				}
+				if( children[j].nodeName == "fighter" ){
+					fighter = children[j].innerHTML;
+				}
+			}
+		}
+		playerList.appendChild( fighterDiv( name, fighter ) );
+	}
 }

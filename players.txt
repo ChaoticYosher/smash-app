@@ -46,4 +46,4 @@ Shulk
 Pacman
 Megaman
 Sonic
-Random]
+Random
