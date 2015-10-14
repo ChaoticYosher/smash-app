@@ -75,6 +75,10 @@ function openFile(event) {
 ////////////////////////////////
 
 // Dynamic Web Page Building
+function rootImageDir(){
+	return "_images\\"
+}
+
 function applyAttribute( element, attribute, value ){
 	var attr = document.createAttribute(attribute)
 	attr.value = value
@@ -110,7 +114,7 @@ function fighterDiv( name, fighter ){
 	innerDiv.appendChild( text )
 	var img = document.createElement( "img" )
 	applyAttribute( img, "class", "playerPic" )
-	applyAttribute( img, "src", "Fighters\\" + fighter + ".png" )
+	applyAttribute( img, "src", rootImageDir() + "Fighters\\" + fighter + ".png" )
 	div.appendChild( img )
 	div.appendChild( innerDiv )
 	return div
@@ -133,7 +137,7 @@ function playerStandDiv( board, player, type ){
 	fighter = document.createElement( "div" )
 	applyAttribute( fighter, "class", "standingItem" )
 	img = document.createElement( "img" )
-	applyAttribute( img, "src", "Avatars\\" + player.fighter + ".png" )
+	applyAttribute( img, "src", rootImageDir() + "Avatars\\" + player.fighter + ".png" )
 	fighter.appendChild( img )
 	main.appendChild( fighter )
 	addTextNode( main, "Score: " + player.score )
@@ -153,7 +157,7 @@ function rankNode( i ){
 	var node = document.createElement( "div" )
 	applyAttribute( node, "class", "standingItem" )
 	var img = document.createElement( "img" )
-	applyAttribute( img, "src", "Images\\" + i + ".png" )
+	applyAttribute( img, "src", rootImageDir() + "Images\\" + i + ".png" )
 	node.appendChild( img )
 	return node
 }
@@ -187,7 +191,7 @@ function loadFighters(){
 		imgSrc = document.createAttribute("src")
 		clickEvent = document.createAttribute("onclick")
 		divClass.value = "charPortrait"
-		imgSrc.value = "Avatars\\" + fighters[i] + ".png"
+		imgSrc.value = rootImageDir() + "Avatars\\" + fighters[i] + ".png"
 		portraitDiv.setAttributeNode( divClass )
 		img.setAttributeNode( imgSrc )
 		clickEvent = document.createAttribute("onclick")
@@ -217,7 +221,7 @@ function randomFighter(){
 }
 
 function selectFighter(name){
-	document.SelectedChar.src = "Fighters\\" + name + ".png"
+	document.SelectedChar.src = rootImageDir() + "Fighters\\" + name + ".png"
 	document.getElementById("character").value = name
 }
 
