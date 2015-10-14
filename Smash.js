@@ -578,12 +578,12 @@ function buildResults(xmlname) {
 }
 
 function generatePage(xml) {
-    var xmlDoc = xml.responseXML;
-    var playerList = document.getElementById("players");
-    var player = xmlDoc.getElementsByTagName("player");
     var children, name, fighter;
-    for( var i = 0 ; i < player.length ; i++ ){
-		children = player[i].childNodes;
+    var xmlDoc = xml.responseXML;
+    var html = document.getElementById("players");
+    var xmlData = xmlDoc.getElementsByTagName("player");
+    for( var i = 0 ; i < xmlData.length ; i++ ){
+		children = xmlData[i].childNodes;
 		name = "?";
 		fighter = "Random";
 		for( var j = 0 ; j < children.length ; j++ ){
@@ -596,6 +596,8 @@ function generatePage(xml) {
 				}
 			}
 		}
-		playerList.appendChild( fighterDiv( name, fighter ) );
+		html.appendChild( fighterDiv( name, fighter ) );
 	}
+	matches = []
+	
 }

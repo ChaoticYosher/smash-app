@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<title>
+<tournament>
+  <title>Super Smash'd Bros Social March 2015</title>
   <players>
     <player>
       <name>Dakota Bicklemeier</name>
@@ -18,7 +19,7 @@
       <fighter>Marth</fighter>
     </player>
     <player>
-      <name>Mitchell Wallis</name>
+      <name>Mitchell Wallace</name>
       <fighter>Lucario</fighter>
     </player>
     <player>
@@ -114,6 +115,71 @@
       <fighter>Link</fighter>
     </player>
   </players>
+  <matches>
+    <match>
+      <player>
+        <name>Chad Gorowski</name>
+        <fighter></fighter>
+        <rank>2</rank>
+        <kos>5</kos>
+        <falls>4</falls>
+      </player>
+      <player>
+        <name>Mitchell Wallace</name>
+        <fighter>Lucario</fighter>
+        <rank>1</rank>
+        <kos>6</kos>
+        <falls>4</falls>
+      </player>
+      <player>
+        <name>Shane Lepage</name>
+        <fighter></fighter>
+        <rank>4</rank>
+        <kos>6</kos>
+        <falls>8</falls>
+      </player>
+      <player>
+        <name>Matt Bowen</name>
+        <fighter></fighter>
+        <rank>3</rank>
+        <kos>5</kos>
+        <falls>6</falls>
+      </player>
+    </match>
+  </matches>
   <standings>
+    <formula>
+      <first></first>
+      <second></second>
+      <third></third>
+      <fourth></fourth>
+    </formula>
+    <player>
+      <name>Brett Strickland</name>
+      <fighter>Diddy Kong</fighter>
+      <score>39</score>
+      <kos>36</kos>
+      <falls>18</falls>
+      <ranks>
+        <rank>1</rank>
+        <rank>1</rank>
+        <rank>1</rank>
+      </ranks>
+    </player>
+    <player>
+      <name>Jacob Wolfe</name>
+      <fighter>Link</fighter>
+      <score>37.75</score>
+      <kos>33</kos>
+      <falls>16</falls>
+      <ranks>
+        <rank>1</rank>
+        <rank>1</rank>
+        <rank>1</rank>
+      </ranks>
+    </player>
   </standings>
-</title>
+  <bracket>
+    <id>EDP5GOpNDEekVZnznp5I5XSNyOkwiK7iWDgNhVdW</id>
+  </bracket>
+</tournament>
