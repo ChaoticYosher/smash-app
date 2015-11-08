@@ -137,7 +137,7 @@ function fighterDiv( name, fighter ){
 	innerDiv.appendChild( text )
 	var img = document.createElement( "img" )
 	applyAttribute( img, "class", "playerPic" )
-	applyAttribute( img, "src", portraitPath( fighter ) )
+	applyAttribute( img, "src", avatarPath( fighter ) )
 	div.appendChild( img )
 	div.appendChild( innerDiv )
 	return div
@@ -186,13 +186,13 @@ function rankNode( i ){
 }
 
 function init(){
-	linux = true
-	matches = []
-	players = []
-	loadFighters()
-	addMatchListeners()
-	showQuery( 'robin' )
-	selectFighter( randomFighter() )
+	linux = true;
+	matches = [];
+	players = [];
+	loadFighters();
+//	addMatchListeners();
+//	showQuery( 'robin' );
+	selectFighter( randomFighter() );
 }
 
 function loadFighters(){
@@ -206,7 +206,7 @@ function loadFighters(){
 				'Lucario','Jigglypuff','Greninja','Duck Hunt','ROB',
 				'Ness','Captain Falcon','Villager','Olimar',
 				'Wii Fit Trainer','Dr Mario','Dark Pit','Lucina',
-				'Shulk','Pacman','Megaman','Sonic','Random']
+				'Shulk','Pacman','Megaman','Sonic','Mewtwo','Lucas','Roy','Ryu','Random']
 	var portraitDiv, img
 	for( var i = 0 ; i < fighters.length ; i++ ){
 		portraitDiv = document.createElement("div")
@@ -238,7 +238,7 @@ function randomFighter(){
 }
 
 function selectFighter(name){
-	document.SelectedChar.src = portraitPath( name )
+	document.getElementById("SelectedChar").src = portraitPath( name )
 	document.getElementById("character").value = name
 }
 
