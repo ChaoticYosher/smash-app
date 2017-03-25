@@ -206,7 +206,8 @@ function loadFighters(){
 				'Lucario','Jigglypuff','Greninja','Duck Hunt','ROB',
 				'Ness','Captain Falcon','Villager','Olimar',
 				'Wii Fit Trainer','Dr Mario','Dark Pit','Lucina',
-				'Shulk','Pacman','Megaman','Sonic','Mewtwo','Lucas','Roy','Ryu','Random']
+				'Shulk','Pacman','Megaman','Sonic','Mewtwo','Lucas',
+				'Roy','Ryu','Cloud','Corrin','Bayonetta','Random']
 	var portraitDiv, img
 	for( var i = 0 ; i < fighters.length ; i++ ){
 		portraitDiv = document.createElement("div")
